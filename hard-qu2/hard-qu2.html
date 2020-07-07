@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../qu-all.js"></script>
+    <title>hard-qu2</title>
+    <style>
+        code {
+            background: rgb(248, 249, 250);
+            border: solid 1px #e1e1e1;
+            border-left: 3px solid rgb(33, 176, 249);
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 8px -1px;
+            box-sizing: border-box;
+            max-height: 300px;
+            margin-bottom: 2.5rem;
+            overflow: auto;
+            padding: 6px 12px;
+            font-size: 15px;
+            font-family: monospace, monospace;
+            display: block;
+            clear: both;
+            color: #555555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>發生什麼事？</h1>
+    <code>
+        package main <br>
+        import (<br>
+        "fmt"<br>
+        "time"<br>
+        )<br>
+        func main() {<br>
+        ch := make(chan int, 1000)<br>
+        go func() {<br>
+        for i := 0; i < 10; i++ {<br>
+            ch <- i<br>
+                }<br>
+                }()<br>
+                go func() {<br>
+                for {<br>
+                a, ok := <-ch<br>
+                    if !ok {<br>
+                    fmt.Println("close")<br>
+                    return<br>
+                    }<br>
+                    fmt.Println("a: ", a)<br>
+                    }<br>
+                    }()<br>
+                    close(ch)<br>
+                    fmt.Println("ok")<br>
+                    time.Sleep(time.Second * 100)<br>
+                    }
+    </code>
+    <h3>請寫出這段程式碼執行完後的結果</h3>
+    <div id="hard-qu2">
+        <input type="text"><button type="button">檢查答案</button>
+    </div>
+
+    <a href="./hard-ans2.html">答案跟提示在這裡～//</a>
+</body>
+
+</html>
